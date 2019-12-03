@@ -68,7 +68,7 @@ public class ShtoPostimActivity extends AppCompatActivity {
         firebaseFirestore = FirebaseFirestore.getInstance();
         firebaseAuth = FirebaseAuth.getInstance();
 
-       user_id = firebaseAuth.getCurrentUser().getUid();
+        user_id = firebaseAuth.getCurrentUser().getUid();
 
         shtoPostimToolbar = findViewById(R.id.shtopostim_toolbar);
         setSupportActionBar(shtoPostimToolbar);

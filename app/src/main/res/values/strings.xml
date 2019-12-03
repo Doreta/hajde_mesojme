@@ -5,7 +5,7 @@
     <string name="kycu_logo_desc">Kycja</string>
     <string name="kycu_btn_text">Kycuni</string>
     <string name="kycu_reg_btn_text">Regjistrohuni ?</string>
-    <string name="ckycuni_text">Ckycuni</string>
+    <string name="ckycuni_text">Log out</string>
     <string name="reg_btn_text">Krijoni llogari</string>
     <string name="reg_kycu_text">Keni llogari ?</string>
     <string name="reg_fjalekalimi_text">Fjalekalimi...</string>
@@ -19,6 +19,40 @@
     <string name="bottom_kryefaqja_text">Kryefaqja</string>
     <string name="bottom_ac_text">Llogaria</string>
 
+
+    <string name="btnIAmNew">Sign up</string>
+    <string name="btnIveBeenHere">Sign in</string>
+    <string name="txtWelcome">Welcome !</string>
+    <string name="txtFirstName">First Name</string>
+    <string name="txtLastName">Last Name</string>
+    <string name="txtEmail">Email</string>
+    <string name="txtUsername">Username</string>
+    <string name="txtPassword">Password</string>
+    <string name="txtGender">Gender</string>
+    <string name="rdbtnMale">Male</string>
+    <string name="rdbtnFemale">Female</string>
+    <string name="btnSignUp">Sign Up</string>
+    <string name="btnSignIn">Sign In</string>
+    <string name="txtAlreadyHaveAccountSignIn">Already have an account? <b><u>Sign In</u></b></string>
+    <string name="txtNoAccount">Don\'t have an account? <b><u>Sign Up</u></b></string>
+    <string name="chckboxRememberMe">Remember Me</string>
+    <string name="txtForgotPassword">Forgot Password?</string>
+    <string name="btnChangeUserData">Change your data</string>
+    <string name="title_activity_home">Home</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_tools">Tools</string>
+    <string name="rateFood">Click To Rate Food</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_lendet_list">LendetList</string>
 </resources>

@@ -8,4 +8,21 @@
 
     <color name="likeBtnGray">#747474</color>
     <color name="likeBtnAccent">#F44336</color>
+
+
+    <color name="btnIAmNew">#5e7974</color>
+    <color name="btnIveBeenHere">#5e7974</color>
+    <color name="btnSignIn">#5e7974</color>
+    <color name="btnSignUp">#5e7974</color>
+    <color name="txtWelcome">#1e9600</color>
+    <color name="transparent">#00000000</color>
+    <color name="whiteText">#FFFFFF</color>
+
+    <color name="overlayBackground">#7f333639</color>
+    <color name="overlayActionBar">#0e0d0e</color>
+
+    <color name="color1">#AB8275</color>
+    <color name="colorBlack">#131212</color>837C7C
+    <color name="colorGrey">#837C7C</color>
+    <color name="colorWhite">#ffffff </color>
 </resources>

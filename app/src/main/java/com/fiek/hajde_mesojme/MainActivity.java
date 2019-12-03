@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -13,21 +15,34 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.fiek.hajde_mesojme.Common.ItemClickListener;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.squareup.picasso.Picasso;
+
+import io.paperdb.Paper;
 
 public class MainActivity extends AppCompatActivity {
 
     private Toolbar mainToolbar;
     private FirebaseAuth mAuth;
     private FirebaseFirestore firebaseFirestore;
+    private String txtInputUsername;
 
     private String user_id;
 
@@ -39,6 +54,12 @@ public class MainActivity extends AppCompatActivity {
 
     private ProfiliFragment profiliFragment;
 
+
+    FirebaseDatabase database;
+    DatabaseReference databaseReference;
+    private String currentUser;
+    private String currentPassword;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,104 +68,34 @@ public class MainActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         firebaseFirestore = FirebaseFirestore.getInstance();
 
+        // Init Firebase
+        database = FirebaseDatabase.getInstance();
+        databaseReference = database.getReference("lendet");
+
         mainToolbar = (Toolbar) findViewById(R.id.main_toolbar);
         setSupportActionBar(mainToolbar);
 
         getSupportActionBar().setTitle("Hajde Mesojme");
-
-        if(mAuth.getCurrentUser() != null) {
-
-            mainbottomNav = findViewById(R.id.mainBottomNav);
-            
-            kryefaqjaFragment = new KryefaqjaFragment();
-
-            profiliFragment = new ProfiliFragment();
-            
-            initializeFragment();
-
-            mainbottomNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-                @Override
-                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
-                    Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.main_container);
-
-                    switch (item.getItemId()) {
-
-                        case R.id.btn_kryefaqja:
-
-                            replaceFragment(kryefaqjaFragment, currentFragment);
-                            return true;
-
-                        case R.id.btn_profili:
-
-                            replaceFragment(profiliFragment, currentFragment);
-                            return true;
-
-                        default:
-                            return false;
+        Paper.init(this);
+        currentUser = getIntent().getExtras().get("current_user").toString();
+        currentPassword = getIntent().getExtras().get("current_password").toString();
 
 
-                    }
+        txtInputUsername = currentUser;
 
-                }
-            });
-
-
-            shtoPostimBtn = findViewById(R.id.shto_postim);
-            shtoPostimBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                    Intent newPostIntent = new Intent(MainActivity.this, ShtoPostimActivity.class);
-                    startActivity(newPostIntent);
-
-                }
-            });
+        if(currentUser != null)
+        {
 
         }
 
-
     }
+
+
+
 
     @Override
     protected void onStart() {
         super.onStart();
-
-        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
-        if(currentUser == null){
-
-            DergoKycje();
-
-        } else {
-
-           user_id = mAuth.getCurrentUser().getUid();
-
-            firebaseFirestore.collection("Users").document(user_id).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-
-                    if(task.isSuccessful()){
-
-                        if(!task.getResult().exists()){
-
-                            Intent setupIntent = new Intent(MainActivity.this, RegjistrohuActivity.class);
-                            startActivity(setupIntent);
-                            finish();
-
-                        }
-
-                    } else {
-
-                        String errorMessage = task.getException().getMessage();
-                        Toast.makeText(MainActivity.this, "Error : " + errorMessage, Toast.LENGTH_LONG).show();
-
-
-                    }
-
-                }
-            });
-
-        }
 
     }
 
@@ -161,6 +112,11 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
 
         switch (item.getItemId()) {
+
+
+            case R.id.btn_profili:
+                dergoProfile();
+                return true;
 
             case R.id.btn_ckycu:
                 Ckycja();
@@ -182,6 +138,16 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    private void dergoProfile() {
+
+        Intent intent = new Intent(MainActivity.this, userProfile.class);
+        intent.putExtra("current_user1", currentUser);
+        intent.putExtra("current_password1", currentPassword);
+        startActivity(intent);
+        finish();
+
+    }
+
     private void Ckycja() {
 
 
@@ -191,7 +157,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void DergoKycje() {
 
-        Intent loginIntent = new Intent(MainActivity.this, KycuActivity.class);
+        Intent loginIntent = new Intent(MainActivity.this, SignIn.class);
         startActivity(loginIntent);
         finish();
 

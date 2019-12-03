@@ -16,6 +16,7 @@
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent"></androidx.appcompat.widget.Toolbar>
 
+
   <com.google.android.material.floatingactionbutton.FloatingActionButton
       android:id="@+id/shto_postim"
       android:layout_width="wrap_content"
@@ -32,10 +33,11 @@
       android:id="@+id/mainBottomNav"
       android:layout_width="0dp"
       android:layout_height="wrap_content"
-      app:menu="@menu/bottom_menu"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent" />
+      app:layout_constraintHorizontal_bias="0.0"
+      app:layout_constraintStart_toStartOf="parent"
+      app:menu="@menu/bottom_menu" />
 
   <FrameLayout
       android:id="@+id/main_container"
