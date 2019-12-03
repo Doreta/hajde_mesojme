@@ -12,6 +12,7 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:orientation="vertical"
+        android:background="@drawable/eee"
         tools:context=".userProfile">
 
 
@@ -198,7 +199,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/radius"
                 android:text="@string/btnChangeUserData"
-                android:textColor="@android:color/white"
+                android:textColor="@android:color/black"
                 android:textSize="30sp"
                 android:textStyle="bold"
                 />
